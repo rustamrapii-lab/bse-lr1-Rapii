@@ -1,26 +1,32 @@
 ﻿using System;
 
-public static class Helper
-{
-    public static int FindMax(int[] array)
-    {
-        if (array == null || array.Length == 0)
-            throw new ArgumentException("Array is empty");
+var result = ToneHelper.GetPrefix(Tone.Professional);
 
-        int max = array[0];
-        for (int i = 1; i < array.Length; i++)
-        {
-            if (array[i] > max) max = array[i];
-        }
-        return max;
-    }
+Console.WriteLine("--- Тест Empathix ---");
+Console.WriteLine("Обраний тон: Професійний");
+Console.WriteLine("Префікс для ШІ: " + result);
+
+public enum Tone 
+{ 
+    Professional, 
+    Friendly, 
+    Soft 
 }
 
-class Program
+public static class ToneHelper
 {
-    static void Main()
+    public static string GetPrefix(Tone tone)
     {
-        int[] numbers = { 1, 99, 3 };
-        Console.WriteLine(Helper.FindMax(numbers));
+        switch (tone)
+        {
+            case Tone.Professional:
+                return "Dear";
+            case Tone.Friendly:
+                return "Hi";
+            case Tone.Soft:
+                return "Hello";
+            default:
+                return "";
+        }
     }
 }
